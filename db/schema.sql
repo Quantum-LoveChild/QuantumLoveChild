@@ -68,5 +68,16 @@ CREATE TABLE pricings (
   createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
-) 
+) ;
 
+
+
+CREATE TABLE exchange_master_table(
+	exchange_id INTEGER(10) AUTO_INCREMENT NOT NULL,
+	exchange_name VARCHAR(30) NOT NULL,
+    country varchar(30) NOT NULL,
+    tether_exposure TINYINT(1),
+    fiat_pairs TINYINT (1),
+    legit_rating VARCHAR(30),
+     PRIMARY KEY (exchange_id)
+    );
