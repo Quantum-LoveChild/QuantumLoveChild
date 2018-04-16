@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var moment = require("moment");
+const password = require("../pw/pw.js");
 
 module.exports = function(app){
 	
@@ -12,7 +13,7 @@ module.exports = function(app){
 	  user: "root",
 
 	  // Your password
-	  password: "",
+	  password: password,
 	  database: "crypto_price_db"
 	});
 

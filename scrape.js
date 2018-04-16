@@ -2,6 +2,7 @@
 const request = require('request');
 const cheerio = require('cheerio');
 var mysql = require("mysql");
+const password = require("./pw/pw.js");
 
 
 
@@ -15,7 +16,7 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "",
+  password: password,
   database: "crypto_price_db"
 });
 

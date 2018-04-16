@@ -3,6 +3,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 var mysql = require("mysql");
 const sentiment = require("sentiment");
+const password = require("./pw/pw.js");
 
 
 module.exports = function(app){
@@ -22,7 +23,7 @@ module.exports = function(app){
             user: "root",
 
             // Your password
-            password: "",
+            password: password,
             database: "crypto_price_db"
         });
 

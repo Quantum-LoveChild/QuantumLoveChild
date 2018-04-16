@@ -68,8 +68,7 @@ CREATE TABLE pricings (
   createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
-) ;
-
+) 
 
 
 CREATE TABLE exchange_master_table(
@@ -80,4 +79,4 @@ CREATE TABLE exchange_master_table(
     fiat_pairs TINYINT (1),
     legit_rating VARCHAR(30),
      PRIMARY KEY (exchange_id)
-    );
+    )
