@@ -3,7 +3,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 var mysql = require("mysql");
 const sentiment = require("sentiment");
-const password = require("./pw/pw.js")
+const password = require("../pw/pw.js")
 
 module.exports = function(app){
 

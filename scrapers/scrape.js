@@ -2,7 +2,7 @@
 const request = require('request');
 const cheerio = require('cheerio');
 var mysql = require("mysql");
-const password = require("./pw/pw.js");
+const password = require("../pw/pw.js");
 
 
 

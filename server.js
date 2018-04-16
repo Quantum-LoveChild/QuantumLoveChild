@@ -22,10 +22,10 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("views"));
 
 // Here are all my scraping scripts. 
-require("./scrape.js")(app);
-require("./coinDeskArticleScrape.js")(app);
-require("./cointelegraphScrape.js")(app);
-require("./cryptonewScrape.js")(app);
+require("./scrapers/scrape.js")(app);
+require("./scrapers/coinDeskArticleScrape.js")(app);
+require("./scrapers/cointelegraphScrape.js")(app);
+require("./scrapers/cryptonewScrape.js")(app);
 
 
 // Routes
