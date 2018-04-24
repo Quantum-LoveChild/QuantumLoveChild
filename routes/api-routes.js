@@ -29,14 +29,14 @@ module.exports = function(app){
 
 
 	app.get("/api/coindeskArticles", function(req, res){
-		connection.query(" Select DISTINCT (Article_title), article_link, id FROM coindesk_articles LIMIT 8", function(error, results, fields){
+		connection.query("Select DISTINCT (Article_title), article_link, id FROM coindesk_articles ORDER BY id DESC LIMIT 8", function(error, results, fields){
 			console.log(results);
 			res.json(results);
 		})
 	})
 
 	app.get("/api/cointelegraphArticles", function(req, res){
-		connection.query(" Select DISTINCT (Article_title), article_link, id FROM cointelegraph_articles order by ID DESC LIMIT 8", function(error, results, fields){
+		connection.query(" Select DISTINCT (Article_title), article_link, id FROM cointelegraph_articles LIMIT 8", function(error, results, fields){
 			console.log(results);
 			res.json(results);
 		})
@@ -58,7 +58,15 @@ module.exports = function(app){
 			})
 	})
 
-
+	// Starting route to get data about the exchanges.  Need to pul 
+	app.get("/api/getExchangeData", function(req, res){
+		connection.query("SELECT DISTINCT (exchangevolumes.exchange_name), twentyfour_hour_volume, country, tether_exposure, fiat_pairs, legit_rating, max(updated_at) FROM exchangevolumes INNER JOIN exchange_master_table ON exchangevolumes.exchange_name = exchange_master_table.exchange_name  GROUP BY exchange_name ORDER BY twentyfour_hour_volume DESC LIMIT 6", function(error, results, fields){
+			if(error) throw error;
+			res.json(results)
+			console.log(results);
+		})
+		
+	});
 
 
 
