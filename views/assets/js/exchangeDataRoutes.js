@@ -47,3 +47,46 @@ function getExchangeVolumeData() {
 
 		});
 }
+
+function getExchangeVolumeData() {
+	$.ajax({
+		url: "/api/getExchangeData",
+		method: "GET"
+	}).done(function(data){
+			console.log("this is out data!!!:", data);
+			for(let i=0; i<data.length; i++){
+			
+				
+				var exchangeName = data[i].exchange_name;
+				var country = data[i].country;
+				var legit = data[i].legit_rating;
+				var volume = data[i].twentyfour_hour_volume;
+
+				var tableRow = $("<tr>");
+				var tableHeadExchange = $("<td>");
+				var tableHeadCountry  = $("<td>");
+				var tableHeadLegit = $("<td>");
+				var tableHeadVolume = $("<td>");
+
+
+				tableRow.attr("data", data[i].exchange_name);
+
+				tableHeadExchange.text(exchangeName);
+				tableHeadCountry.text(country);
+				tableHeadLegit.text(legit);
+				tableHeadVolume.text(accounting.formatMoney(volume));
+
+				tableRow.append(tableHeadExchange);
+				tableRow.append(tableHeadCountry);
+				tableRow.append(tableHeadLegit);
+				tableRow.append(tableHeadVolume);
+
+				console.log(tableRow)
+
+
+				$("#cryptoExchangeData").append(tableRow);
+
+			}
+
+		});
+}

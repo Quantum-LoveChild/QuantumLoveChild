@@ -36,14 +36,14 @@ module.exports = function(app){
 	})
 
 	app.get("/api/cointelegraphArticles", function(req, res){
-		connection.query(" Select DISTINCT (Article_title), article_link, id FROM cointelegraph_articles LIMIT 8", function(error, results, fields){
+		connection.query("Select DISTINCT (Article_title), article_link, id FROM cointelegraph_articles WHERE Article_link like '%cointelegraph.com%' And Article_title not in ('Store', 'Buy Bitcoin', 'People', 'Heatmap') ORDER BY id DESC LIMIT 8", function(error, results, fields){
 			console.log(results);
 			res.json(results);
 		})
 	})
 
 	app.get("/api/cryptonewsScrape", function(req, res){
-		connection.query(" Select DISTINCT (article_title), article_link FROM cryptonews_articles WHERE article_link LIKE '%news.bitcoin.com%' order by ID DESC LIMIT 8", function(error, results, fields){
+		connection.query("Select DISTINCT (article_title), article_link FROM cryptonews_articles  WHERE article_link LIKE '%news.bitcoin.com%'  and article_link not like '%/page/%' order by ID DESC LIMIT 8", function(error, results, fields){
 			res.json(results);
 		})
 	})
@@ -58,7 +58,7 @@ module.exports = function(app){
 			})
 	})
 
-	// Starting route to get data about the exchanges.  Need to pul 
+	///////////////////Starting route to get data about the exchanges. 
 	app.get("/api/getExchangeData", function(req, res){
 		connection.query("SELECT DISTINCT (exchangevolumes.exchange_name), twentyfour_hour_volume, country, tether_exposure, fiat_pairs, legit_rating, max(updated_at) FROM exchangevolumes INNER JOIN exchange_master_table ON exchangevolumes.exchange_name = exchange_master_table.exchange_name  GROUP BY exchange_name ORDER BY twentyfour_hour_volume DESC LIMIT 6", function(error, results, fields){
 			if(error) throw error;
@@ -68,6 +68,20 @@ module.exports = function(app){
 		
 	});
 
+
+	// ////////////////////Starting Route to get Exchange data sumed volume each day by country
+	app.get("/api/getExchangeData/country", function(req, res){
+		connection.query("SELECT DISTINCT (exchangevolumes.exchange_name), twentyfour_hour_volume, country, tether_exposure, fiat_pairs, legit_rating, max(updated_at) FROM exchangevolumes INNER JOIN exchange_master_table ON exchangevolumes.exchange_name = exchange_master_table.exchange_name  GROUP BY exchange_name ORDER BY twentyfour_hour_volume DESC LIMIT 6", function(error, results, fields){
+			if(error) throw error;
+			res.json(results)
+			console.log(results);
+		})
+		
+
+
+
+
+	});
 
 
 
