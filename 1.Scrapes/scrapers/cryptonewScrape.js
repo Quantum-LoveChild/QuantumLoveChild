@@ -5,7 +5,8 @@ var mysql = require("mysql");
 const sentiment = require("sentiment");
 const password = require("../pw/pw.js");
 
-module.exports = function(app) {
+
+module.exports = function(app){
 
     coindeskArticleScrape();
 
@@ -34,7 +35,7 @@ module.exports = function(app) {
 
 
         // Set an scraping url
-        let url = "https://cointelegraph.com/";
+        let url = "https://news.bitcoin.com/";
 
 
 
@@ -53,10 +54,11 @@ module.exports = function(app) {
             $('a').each(function(i, elem) {
 
 
-                articleTitle[i] = $(this).attr("title")
+                articleTitle[i] = $(this).attr("title");
                 articleLink[i] = $(this).attr("href")
+                
+                // Sentiment Analysis on each of the articles. 
                 var articleTitleSentiment = sentiment($(this).attr("title"));
-                // articleTitle[i] = $(this).attr("title")
 
                 let newArticleRecord = {
                     article_title: articleTitle[i],
@@ -68,12 +70,14 @@ module.exports = function(app) {
                     sentiment_negative_words: JSON.stringify(articleTitleSentiment.negative)
                 }
 
-                // console.log(newArticleRecord);
+                console.log(newArticleRecord)
+               
+
 
                 if (articleTitle[i] != null) {
-                    connection.query('INSERT INTO cointelegraph_articles SET ?', newArticleRecord, function(error, results, fields) {
+                    connection.query('INSERT INTO cryptonews_articles SET ?', newArticleRecord, function(error, results, fields) {
                         if (error) throw error;
-                        // console.log(results);
+                        console.log(results);
                     })
                 }
             });
@@ -86,7 +90,8 @@ module.exports = function(app) {
 
         });
     }
-
 }
+
+
 
 

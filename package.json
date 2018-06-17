@@ -1,32 +1,23 @@
 {
-  "name": "coinmarketcap-exchangescrape",
+  "name": "a",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node scrape.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pd164594/coinmarketcap-exchangescrape.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pd164594/coinmarketcap-exchangescrape/issues"
-  },
-  "homepage": "https://github.com/pd164594/coinmarketcap-exchangescrape#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "method-override": "^2.3.10",
-    "moment": "^2.22.0",
     "mysql": "^2.15.0",
-    "mysql2": "^1.5.1",
+    "mysql2": "^1.5.3",
+    "nodemon": "^1.14.3",
     "request": "^2.83.0",
-    "sentiment": "^4.2.0",
-    "sequelize": "^4.32.2"
+    "sentiment": "^5.0.0",
+    "sequelize": "^4.28.6"
   }
 }
